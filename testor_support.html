@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testor - Destek & Yardım</title>
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --card-bg: rgba(30, 41, 59, 0.6);
+            --glass: rgba(255, 255, 255, 0.05);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 20px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .section {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .steps {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .steps li {
+            counter-increment: step-counter;
+            margin-bottom: 20px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        .steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: var(--accent);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .feature-card {
+            background: var(--glass);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .feature-card h4 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .faq-item {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .faq-answer {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .contact {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .contact a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact a:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
+        ul {
+            color: var(--text-secondary);
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        ul li {
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            .header {
+                padding: 30px 15px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">📄✨</div>
+            <h1>Testor</h1>
+            <p class="subtitle">PDF'lerden Hızlıca Sınav ve Test Hazırlayın</p>
+        </div>
+
+        <!-- Hakkında -->
+        <div class="section">
+            <h2>🎯 Testor Nedir?</h2>
+            <p>
+                Testor, öğretmenlerin ve eğitimcilerin PDF dosyalarından kolayca soru çıkarmasını ve
+                profesyonel sınavlar hazırlamasını sağlayan yapay zeka destekli bir mobil uygulamadır.
+            </p>
+            <p>
+                Artık saatlerce soruları tek tek kopyalamaya ve düzenlemeye gerek yok! Testor ile
+                PDF'inizdeki soruları saniyeler içinde seçin, özelleştirin ve yeni bir sınav PDF'i oluşturun.
+            </p>
+        </div>
+
+        <!-- Nasıl Kullanılır -->
+        <div class="section">
+            <h2>📱 Nasıl Kullanılır?</h2>
+            <ol class="steps">
+                <li>
+                    <strong>PDF Yükleyin</strong><br>
+                    <span style="color: var(--text-secondary);">
+                        Sorular içeren PDF dosyanızı uygulamaya yükleyin. Tek seferde en fazla 3 PDF yükleyebilirsiniz.
+                    </span>
+                </li>
+                <li>
+                    <strong>Soruları Seçin</strong><br>
+                    <span style="color: var(--text-secondary);">
+                        Yapay zeka otomatik olarak soruları algılar. İstediğiniz soruları seçin,
+                        istemediğiniz soruları kaldırın.
+                    </span>
+                </li>
+                <li>
+                    <strong>Sınav Bilgilerini Girin</strong><br>
+                    <span style="color: var(--text-secondary);">
+                        Okul adı, sınıf, ders, tarih gibi bilgileri girin ve hazır şablonlardan birini seçin.
+                    </span>
+                </li>
+                <li>
+                    <strong>PDF Oluşturun</strong><br>
+                    <span style="color: var(--text-secondary);">
+                        Tek tuşla profesyonel görünümlü sınav PDF'inizi oluşturun ve paylaşın!
+                    </span>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Özellikler -->
+        <div class="section">
+            <h2>⚡ Özellikler</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h4>🤖 Yapay Zeka Destekli</h4>
+                    <p>Gelişmiş OCR teknolojisi ile soruları otomatik olarak algılar ve çıkarır.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🎨 Özelleştirilebilir Şablonlar</h4>
+                    <p>Hazır şablonlar arasından seçim yapın veya kendi şablonunuzu oluşturun.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>📚 Çoklu PDF Desteği</h4>
+                    <p>Birden fazla PDF'den soruları birleştirerek tek sınav hazırlayın.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>💾 Sınav Geçmişi</h4>
+                    <p>Oluşturduğunuz tüm sınavları kaydeder, istediğiniz zaman tekrar kullanın.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🎯 Okul & Sınıf Yönetimi</h4>
+                    <p>Okul, sınıf ve ders bilgilerinizi kaydedin, hızlıca seçim yapın.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>📱 Kolay Paylaşım</h4>
+                    <p>Hazırladığınız sınavları WhatsApp, Email veya diğer uygulamalar ile paylaşın.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Üyelik Paketleri -->
+        <div class="section">
+            <h2>💎 Üyelik Paketleri</h2>
+
+            <h3>🆓 Starter (Ücretsiz)</h3>
+            <ul>
+                <li>3 adet PDF oluşturma hakkı</li>
+                <li>Temel şablonlar</li>
+                <li>Reklamlı kullanım</li>
+            </ul>
+
+            <h3>👑 Elite</h3>
+            <ul>
+                <li>Sınırsız PDF oluşturma</li>
+                <li>Tüm premium şablonlar</li>
+                <li>Özel şablon oluşturma</li>
+                <li>Reklamsız deneyim</li>
+            </ul>
+        </div>
+
+        <!-- SSS -->
+        <div class="section">
+            <h2>❓ Sıkça Sorulan Sorular</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">Hangi dosya formatları destekleniyor?</div>
+                <div class="faq-answer">
+                    Şu anda sadece PDF dosyaları desteklenmektedir. PDF'lerinizin net ve okunabilir
+                    olması en iyi sonuçlar için önemlidir.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Yapay zeka her zaman doğru sonuç verir mi?</div>
+                <div class="faq-answer">
+                    Yapay zeka teknolojisi oldukça gelişmiş olsa da %100 doğruluk garanti edilemez.
+                    Bu yüzden soruları seçme ekranında her soruyu kontrol etme ve ayarlama imkanı sunuyoruz.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Kaç sayfa PDF yükleyebilirim?</div>
+                <div class="faq-answer">
+                    Tek bir PDF'de sayfa sınırı yoktur ancak çok sayfalı PDF'lerin işlenmesi
+                    daha uzun sürebilir. En iyi deneyim için PDF'lerinizi bölümlere ayırmanızı öneririz.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Starter paketinde kalan haklarım nasıl yenilenir?</div>
+                <div class="faq-answer">
+                    Starter paketinde verilen 3 hak tek kullanımlıktır ve yenilenmez. Sınırsız
+                    kullanım için Elite pakete geçmeniz gerekmektedir.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Elite üyeliğimi nasıl iptal edebilirim?</div>
+                <div class="faq-answer">
+                    Elite üyeliğinizi App Store hesap ayarlarınızdan istediğiniz zaman iptal edebilirsiniz.
+                    İptal etseniz bile mevcut abonelik döneminiz sonuna kadar Elite özelliklerinden
+                    yararlanmaya devam edersiniz.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Verilerim güvende mi?</div>
+                <div class="faq-answer">
+                    Evet! Tüm verileriniz şifrelenmiş Firebase sunucularında güvenle saklanır.
+                    Yüklediğiniz PDF'ler sadece soru çıkarma işlemi için kullanılır ve sunucularda
+                    saklanmaz.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Android versiyonu var mı?</div>
+                <div class="faq-answer">
+                    Evet! Testor hem iOS hem de Android platformlarında kullanılabilir.
+                </div>
+            </div>
+        </div>
+
+        <!-- İletişim -->
+        <div class="section">
+            <h2>📧 İletişim</h2>
+            <p style="text-align: center;">
+                Sorularınız, önerileriniz veya teknik destek için bizimle iletişime geçebilirsiniz:
+            </p>
+            <div class="contact">
+                <p>
+                    <strong>Email:</strong>
+                    <a href="mailto:testorappinfo@gmail.com	">testorappinfo@gmail.com</a>
+                </p>
+                <p style="margin-top: 30px; color: var(--text-secondary); font-size: 14px;">
+                    Testor - Eğitimi kolaylaştırıyoruz 🎓
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
