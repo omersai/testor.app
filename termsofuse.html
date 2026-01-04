@@ -24,10 +24,28 @@
     p{margin:8px 0}
     footer{margin-top:20px;color:var(--muted);font-size:13px}
     @media (max-width:600px){body{padding:18px}.card{padding:18px}}
+    
+    /* Yeni eklenen dil butonları stili */
+    .language-switcher {position: absolute;top: 32px;right: 32px;display:flex;gap:8px;}
+    .lang-btn {padding:6px 12px;border-radius:8px;border:1px solid #d1d5db;background:white;cursor:pointer;display:flex;align-items:center;gap:6px;font-size:14px;transition:all 0.2s;}
+    .lang-btn:hover {background:#f3f4f6;}
+    .lang-btn.active {background:#0b7285;color:white;border-color:#0b7285;}
+    .flag {width:20px;height:15px;border-radius:2px;}
+    @media (max-width:600px){.language-switcher {position:static;margin-bottom:20px;justify-content:center;}}
   </style>
 </head>
 <body>
   <div class="container">
+    <!-- Dil Değiştirme Butonları -->
+    <div class="language-switcher">
+      <button class="lang-btn active" data-lang="tr">
+        🇹🇷 TR
+      </button>
+      <button class="lang-btn" data-lang="en">
+        🇬🇧 EN
+      </button>
+    </div>
+
     <header>
       <div class="logo">T</div>
       <div>
@@ -230,5 +248,345 @@
 
     </div>
   </div>
+
+  <script>
+    // Dil verileri
+    const translations = {
+      tr: {
+        title: "Kullanım Şartları — Testor",
+        metaDesc: "Testor — Son Güncelleme: 10 Kasım 2025",
+        h1: "Kullanım Şartları",
+        
+        nav: [
+          "1. Giriş ve Kabul", "2. Hizmet Tanımı", "3. Kullanıcı Hesabı",
+          "4. Kullanıcı Sorumlulukları", "5. Fikri Mülkiyet Hakları", "6. Ücretler ve Ödeme",
+          "7. Hizmet Güvencesi & Sorumluluk", "8. Yedekli Veriler", "9. Hizmet Değişiklikleri",
+          "10. Üçüncü Taraf Hizmetler", "11. Yasal Uyum", "12. Uyuşmazlık Çözümü",
+          "13. Genel Hükümler", "14. Şartlarda Değişiklik", "15-16. App Store & Play Store Ek Şartları",
+          "17. İletişim"
+        ],
+        
+        sections: {
+          giris: {
+            title: "1. GİRİŞ VE KABUL",
+            content: "Testor mobil uygulamasını (\"Uygulama\", \"Hizmet\") kullanarak bu Kullanım Şartlarını (\"Şartlar\") kabul etmiş olursunuz. Bu şartları kabul etmiyorsanız, lütfen uygulamayı kullanmayın."
+          },
+          hizmet: {
+            title: "2. HİZMET TANIMI",
+            p1: "Testor, eğitimcilerin ve öğretmenlerin:",
+            li1: ["PDF belgelerinden soru çıkarmasını", "Soru bankası oluşturmasını", "Okul, ders ve sınıf yönetimi yapmasını", "Özelleştirilmiş sınav şablonları oluşturmasını"]
+          },
+          hesap: {
+            title: "3. KULLANICI HESABI",
+            sub1: "3.1 Hesap Oluşturma",
+            li1: ["Apple Sign In veya Google Sign In ile hesap oluşturabilirsiniz", "Doğru ve güncel bilgiler vermelisiniz", "Hesabınızın güvenliğinden siz sorumlusunuz", "4 yaşından büyük olmalısınız"],
+            sub2: "3.2 Hesap Güvenliği",
+            li2: ["Hesap bilgilerinizi üçüncü taraflarla paylaşmayın", "Yetkisiz aktivite fark ederseniz derhal bildirin", "Her kullanıcı yalnızca bir hesap oluşturabilir"],
+            sub3: "3.3 Hesap Askıya Alma veya Sonlandırma",
+            p1: "Şartları ihlal eden hesaplar askıya alınabilir veya sonlandırılabilir. Örnek ihlaller:",
+            li3: ["Yasadışı faaliyetler", "Hizmetin kötüye kullanımı", "Diğer kullanıcılara zarar verme", "Hileli işlemler"]
+          },
+          sorumluluk: {
+            title: "4. KULLANICI SORUMLULUKLARI",
+            sub1: "4.1 İçerik Sorumluluğu",
+            li1: ["Yüklediğiniz PDF'ler ve oluşturduğunuz içeriklerden siz sorumlusunuz", "Telif hakkı ihlali yapmamalısınız", "Müstehcen, uygunsuz veya yasadışı içerik yüklemeyin", "Başkalarının haklarını ihlal eden içerik paylaşmayın"],
+            sub2: "4.2 Yasaklanan Kullanımlar",
+            li2: ["Uygulamayı tersine mühendislik yapmak", "Otomatik sistemlerle (bot, crawler) kullanmak", "Güvenlik açıklarını exploit etmek", "Spam veya kötü amaçlı içerik göndermek", "Diğer kullanıcıların hesaplarına yetkisiz erişim", "Hizmeti aşırı yüklemek veya kesintiye uğratmak", "Virüs, zararlı yazılım yaymak"]
+          },
+          fikri: {
+            title: "5. FİKRİ MÜLKİYET HAKLARI",
+            sub1: "5.1 Uygulama Hakları",
+            li1: ["Uygulama, tasarım, logo ve tüm içerik bizim mülkiyetimizdir", "Kullanıcılara sınırlı, kişisel, ticari olmayan bir kullanım lisansı verilir"],
+            sub2: "5.2 Kullanıcı İçeriği",
+            li2: ["Yüklediğiniz içeriklerin telif hakkı size aittir", "Bize içerikleri işlemek, depolamak ve hizmet sunmak için sınırlı bir lisans verirsiniz"],
+            sub3: "5.3 Geri Bildirim",
+            p1: "Bize sağladığınız geri bildirim ve önerileri telif hakkı olmaksızın kullanabiliriz."
+          },
+          ucret: {
+            title: "6. ÜCRETLER VE ÖDEME",
+            sub1: "6.1 Ücretsiz Hizmet",
+            p1: "Uygulama şu anda ücretsiz olarak sunulmaktadır. Gelecekte ücretli özellikler eklenebilir.",
+            sub2: "6.2 Gelecekteki Ücretlendirme",
+            p2: "Ücretli özellikler eklenmesi durumunda önceden bilgilendirileceksiniz; mevcut özelliklerin ücretlendirilmesi durumunda 30 gün önceden haber verilecektir."
+          },
+          "sorumluluk-siniri": {
+            title: "7. HİZMET GÜVENCESİ VE SORUMLULUK SINIRI",
+            sub1: "7.1 Hizmet Garantisi Yoktur",
+            p1: "Uygulama \"olduğu gibi\" ve \"mevcut olduğu şekilde\" sunulur. Kesintisiz veya hatasız çalışma garantisi verilmez.",
+            sub2: "7.2 Sorumluluk Sınırlaması",
+            p2: "Yasal olarak izin verilen azami ölçüde, dolaylı veya özel zararlar, veri kaybı, iş veya kar kaybından sorumlu değiliz.",
+            sub3: "7.3 Kullanıcı Sorumluluğu",
+            p3: "Kullanıcılar uygulamayı kendi risklerinde kullanmayı, düzenli yedekleme yapmayı ve gerekli internet/cihaz gereksinimlerini sağlamayı kabul eder."
+          },
+          yedek: {
+            title: "8. YEDEKLİ VERİLER",
+            p1: "Verilerinizi düzenli olarak yedeklemenizi öneririz. Veri kaybından sorumlu değiliz. Firebase altyapısı ile veriler korunur, ancak garanti verilmez."
+          },
+          degisiklik: {
+            title: "9. HİZMET DEĞİŞİKLİKLERİ VE SONLANDIRMA",
+            sub1: "9.1 Hizmet Değişiklikleri",
+            p1: "Bildirim olmaksızın özellikleri değiştirebilir, ekleyebilir veya kaldırabiliriz. Önemli değişikliklerde kullanıcıları bilgilendirmeye çalışırız.",
+            sub2: "9.2 Hizmet Sonlandırma",
+            p2: "Hizmeti tamamen veya kısmen sonlandırma hakkımız saklıdır; sonlandırma durumunda makul bir önceden bildirim süresi verilir ve verilerinizi indirmeniz için zaman tanınır."
+          },
+          ucuncu: {
+            title: "10. ÜÇÜNCÜ TARAF HİZMETLER",
+            p1: "Uygulamamız şu üçüncü taraf hizmetleri kullanır:",
+            li1: ["Firebase: Veri depolama ve kimlik doğrulama", "Apple Sign In: Kullanıcı girişi", "Google Sign In: Kullanıcı girişi"],
+            p2: "Bu hizmetlerin kendi kullanım şartları ve gizlilik politikaları geçerlidir."
+          },
+          yasal: {
+            title: "11. YASAL UYUM",
+            p1: "Uygulamayı yasal amaçlar için kullanmalısınız. Telif hakkı yasalarına ve yürürlükteki mevzuata uymanız gerekir. Yasal talepler halinde yetkili makamlarla işbirliği yapabiliriz."
+          },
+          uyusmazlik: {
+            title: "12. UYUŞMAZLIK ÇÖZÜMÜ",
+            sub1: "12.1 Geçerli Hukuk",
+            p1: "Bu şartlar Türkiye Cumhuriyeti yasalarına tabidir.",
+            sub2: "12.2 Yargı Yetkisi",
+            p2: "Herhangi bir uyuşmazlık [Şehir] mahkemelerinde çözümlenir.",
+            sub3: "12.3 Tahkim",
+            p3: "Taraflar arabuluculuk veya tahkim yoluyla çözüm aramayı kabul edebilir."
+          },
+          genel: {
+            title: "13. GENEL HÜKÜMLER",
+            li1: ["<strong>13.1 Şartların Tamamı:</strong> Bu şartlar hizmet kullanımına ilişkin tam anlaşmayı oluşturur.", "<strong>13.2 Bölünebilirlik:</strong> Bir hükmün geçersiz olması diğer hükümlerin geçerliliğini etkilemez.", "<strong>13.3 Feragat:</strong> Haklarımızın kullanılmaması feragat anlamına gelmez.", "<strong>13.4 Devir:</strong> Kullanıcılar bu şartları devredemez; biz devredebiliriz."]
+          },
+          degisiklikler: {
+            title: "14. ŞARTLARDA DEĞİŞİKLİK",
+            p1: "Bu şartları istediğimiz zaman değiştirebiliriz. Önemli değişiklikler uygulama içinde bildirilir. Değişiklikleri kabul etmiyorsanız hesabınızı silebilir ve uygulamayı kullanmayı bırakabilirsiniz."
+          },
+          ekler: {
+            title: "15-16. APPLE APP STORE & GOOGLE PLAY EK ŞARTLARI",
+            p1: "<strong>Apple App Store:</strong> Apple bu şartların bir tarafı değildir ve uygulama bakımı/destekten sorumlu değildir. Fikri mülkiyet iddiaları veya üçüncü taraf talepleri için Apple ile iletişime geçilebilir.",
+            p2: "<strong>Google Play Store:</strong> Google Play şartları da geçerlidir; Google uygulama içeriğinden veya desteğinden sorumlu değildir."
+          },
+          footer: "© Testor — Tüm hakları saklıdır."
+        }
+      },
+      
+      en: {
+        title: "Terms of Use — Testor",
+        metaDesc: "Testor — Last Updated: November 10, 2025",
+        h1: "Terms of Use",
+        
+        nav: [
+          "1. Introduction and Acceptance", "2. Service Description", "3. User Account",
+          "4. User Responsibilities", "5. Intellectual Property Rights", "6. Fees and Payment",
+          "7. Service Warranty & Liability", "8. Data Backups", "9. Service Changes",
+          "10. Third-Party Services", "11. Legal Compliance", "12. Dispute Resolution",
+          "13. General Provisions", "14. Changes to Terms", "15-16. App Store & Play Store Additional Terms",
+          "17. Contact"
+        ],
+        
+        sections: {
+          giris: {
+            title: "1. INTRODUCTION AND ACCEPTANCE",
+            content: "By using the Testor mobile application (\"Application\", \"Service\"), you accept these Terms of Use (\"Terms\"). If you do not accept these terms, please do not use the application."
+          },
+          hizmet: {
+            title: "2. SERVICE DESCRIPTION",
+            p1: "Testor enables educators and teachers to:",
+            li1: ["Extract questions from PDF documents", "Create question banks", "Manage schools, courses, and classes", "Create customized exam templates"]
+          },
+          hesap: {
+            title: "3. USER ACCOUNT",
+            sub1: "3.1 Account Creation",
+            li1: ["You can create an account with Apple Sign In or Google Sign In", "You must provide accurate and current information", "You are responsible for the security of your account", "You must be over 4 years old"],
+            sub2: "3.2 Account Security",
+            li2: ["Do not share your account information with third parties", "Report unauthorized activity immediately", "Each user can create only one account"],
+            sub3: "3.3 Account Suspension or Termination",
+            p1: "Accounts that violate the terms may be suspended or terminated. Example violations:",
+            li3: ["Illegal activities", "Misuse of the service", "Harming other users", "Fraudulent transactions"]
+          },
+          sorumluluk: {
+            title: "4. USER RESPONSIBILITIES",
+            sub1: "4.1 Content Responsibility",
+            li1: ["You are responsible for the PDFs you upload and content you create", "You should not violate copyright", "Do not upload obscene, inappropriate, or illegal content", "Do not share content that violates others' rights"],
+            sub2: "4.2 Prohibited Uses",
+            li2: ["Reverse engineering the application", "Using with automated systems (bot, crawler)", "Exploiting security vulnerabilities", "Sending spam or malicious content", "Unauthorized access to other users' accounts", "Overloading or disrupting the service", "Spreading viruses, malware"]
+          },
+          fikri: {
+            title: "5. INTELLECTUAL PROPERTY RIGHTS",
+            sub1: "5.1 Application Rights",
+            li1: ["The application, design, logo, and all content are our property", "Users are granted a limited, personal, non-commercial use license"],
+            sub2: "5.2 User Content",
+            li2: ["Copyright of content you upload belongs to you", "You grant us a limited license to process, store, and provide services with your content"],
+            sub3: "5.3 Feedback",
+            p1: "We may use feedback and suggestions you provide without copyright restrictions."
+          },
+          ucret: {
+            title: "6. FEES AND PAYMENT",
+            sub1: "6.1 Free Service",
+            p1: "The application is currently offered free of charge. Paid features may be added in the future.",
+            sub2: "6.2 Future Pricing",
+            p2: "You will be informed in advance if paid features are added; if existing features become paid, 30 days' notice will be given."
+          },
+          "sorumluluk-siniri": {
+            title: "7. SERVICE WARRANTY AND LIABILITY LIMITATION",
+            sub1: "7.1 No Service Warranty",
+            p1: "The application is provided \"as is\" and \"as available\". No guarantee of uninterrupted or error-free operation is provided.",
+            sub2: "7.2 Liability Limitation",
+            p2: "To the maximum extent permitted by law, we are not liable for indirect or special damages, data loss, business or profit loss.",
+            sub3: "7.3 User Responsibility",
+            p3: "Users agree to use the application at their own risk, perform regular backups, and provide necessary internet/device requirements."
+          },
+          yedek: {
+            title: "8. DATA BACKUPS",
+            p1: "We recommend regularly backing up your data. We are not responsible for data loss. Data is protected with Firebase infrastructure, but no guarantee is provided."
+          },
+          degisiklik: {
+            title: "9. SERVICE CHANGES AND TERMINATION",
+            sub1: "9.1 Service Changes",
+            p1: "We may modify, add, or remove features without notice. We will try to inform users of significant changes.",
+            sub2: "9.2 Service Termination",
+            p2: "We reserve the right to terminate the service completely or partially; reasonable advance notice will be given upon termination, and time will be provided for you to download your data."
+          },
+          ucuncu: {
+            title: "10. THIRD-PARTY SERVICES",
+            p1: "Our application uses the following third-party services:",
+            li1: ["Firebase: Data storage and authentication", "Apple Sign In: User login", "Google Sign In: User login"],
+            p2: "These services have their own terms of use and privacy policies that apply."
+          },
+          yasal: {
+            title: "11. LEGAL COMPLIANCE",
+            p1: "You must use the application for legal purposes. You must comply with copyright laws and applicable regulations. We may cooperate with authorities upon legal requests."
+          },
+          uyusmazlik: {
+            title: "12. DISPUTE RESOLUTION",
+            sub1: "12.1 Governing Law",
+            p1: "These terms are governed by the laws of the Republic of Turkey.",
+            sub2: "12.2 Jurisdiction",
+            p2: "Any dispute shall be resolved in [City] courts.",
+            sub3: "12.3 Arbitration",
+            p3: "Parties may agree to seek resolution through mediation or arbitration."
+          },
+          genel: {
+            title: "13. GENERAL PROVISIONS",
+            li1: ["<strong>13.1 Entire Agreement:</strong> These terms constitute the complete agreement regarding service use.", "<strong>13.2 Severability:</strong> Invalidity of one provision does not affect the validity of others.", "<strong>13.3 Waiver:</strong> Non-exercise of our rights does not constitute waiver.", "<strong>13.4 Assignment:</strong> Users cannot assign these terms; we may assign them."]
+          },
+          degisiklikler: {
+            title: "14. CHANGES TO TERMS",
+            p1: "We may change these terms at any time. Significant changes will be announced within the application. If you do not accept the changes, you may delete your account and stop using the application."
+          },
+          ekler: {
+            title: "15-16. APPLE APP STORE & GOOGLE PLAY ADDITIONAL TERMS",
+            p1: "<strong>Apple App Store:</strong> Apple is not a party to these terms and is not responsible for application maintenance/support. Apple may be contacted for intellectual property claims or third-party claims.",
+            p2: "<strong>Google Play Store:</strong> Google Play terms also apply; Google is not responsible for application content or support."
+          },
+          footer: "© Testor — All rights reserved."
+        }
+      }
+    };
+
+    // Dil değiştirme fonksiyonu
+    function changeLanguage(lang) {
+      const t = translations[lang];
+      
+      // Sayfa başlık ve meta güncelleme
+      document.title = t.title;
+      document.querySelector('meta[name="description"]').setAttribute('content', t.title);
+      document.querySelector('h1').textContent = t.h1;
+      document.querySelector('.meta').textContent = t.metaDesc;
+      
+      // Navigasyon bağlantılarını güncelle
+      const navLinks = document.querySelectorAll('.toc a');
+      navLinks.forEach((link, index) => {
+        link.textContent = t.nav[index];
+      });
+      
+      // Bölümleri güncelle
+      Object.keys(t.sections).forEach(sectionId => {
+        const section = t.sections[sectionId];
+        const sectionEl = document.getElementById(sectionId);
+        
+        if (sectionEl) {
+          // Başlık
+          const h2 = sectionEl.querySelector('h2');
+          if (h2) h2.textContent = section.title;
+          
+          // Paragrafları güncelle
+          const paragraphs = sectionEl.querySelectorAll('p');
+          let pIndex = 1;
+          paragraphs.forEach((p) => {
+            if (section[`p${pIndex}`]) {
+              p.innerHTML = section[`p${pIndex}`];
+              pIndex++;
+            }
+          });
+          
+          // Alt başlıkları güncelle
+          const subHeaders = sectionEl.querySelectorAll('h3');
+          let h3Index = 1;
+          subHeaders.forEach((h3) => {
+            if (section[`sub${h3Index}`]) {
+              h3.textContent = section[`sub${h3Index}`];
+              h3Index++;
+            }
+          });
+          
+          // Liste öğelerini güncelle
+          const lists = sectionEl.querySelectorAll('ul');
+          let ulIndex = 1;
+          lists.forEach((ul) => {
+            const listItems = ul.querySelectorAll('li');
+            const listKey = `li${ulIndex}`;
+            
+            if (section[listKey]) {
+              listItems.forEach((li, liIndex) => {
+                if (section[listKey][liIndex]) {
+                  li.innerHTML = section[listKey][liIndex];
+                }
+              });
+            }
+            ulIndex++;
+          });
+        }
+      });
+      
+      // Footer güncelle
+      document.querySelector('footer p').textContent = t.sections.footer;
+      
+      // Aktif buton güncelle
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.lang === lang) {
+          btn.classList.add('active');
+        }
+      });
+      
+      // Dil değişikliğini local storage'a kaydet
+      localStorage.setItem('testor_language', lang);
+      
+      // HTML lang attribute güncelle
+      document.documentElement.lang = lang === 'tr' ? 'tr' : 'en';
+    }
+
+    // Sayfa yüklendiğinde çalışacak
+    document.addEventListener('DOMContentLoaded', function() {
+      const langButtons = document.querySelectorAll('.lang-btn');
+      
+      // Kayıtlı dili kontrol et
+      const savedLang = localStorage.getItem('testor_language') || 'tr';
+      
+      // İlk dil ayarı
+      changeLanguage(savedLang);
+      
+      // Butonlara tıklama olayı ekle
+      langButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+          const lang = this.dataset.lang;
+          changeLanguage(lang);
+        });
+      });
+      
+      // URL'de dil parametresi varsa
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlLang = urlParams.get('lang');
+      if (urlLang && (urlLang === 'tr' || urlLang === 'en')) {
+        changeLanguage(urlLang);
+      }
+    });
+  </script>
 </body>
 </html>
