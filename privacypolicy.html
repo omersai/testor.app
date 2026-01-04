@@ -23,10 +23,28 @@
     p{margin:8px 0}
     footer{margin-top:20px;color:var(--muted);font-size:13px}
     @media (max-width:600px){body{padding:18px}.card{padding:18px}}
+    
+    /* Yeni eklenen dil butonları stili */
+    .language-switcher {position: absolute;top: 32px;right: 32px;display:flex;gap:8px;}
+    .lang-btn {padding:6px 12px;border-radius:8px;border:1px solid #d1d5db;background:white;cursor:pointer;display:flex;align-items:center;gap:6px;font-size:14px;transition:all 0.2s;}
+    .lang-btn:hover {background:#f3f4f6;}
+    .lang-btn.active {background:#0b7285;color:white;border-color:#0b7285;}
+    .flag {width:20px;height:15px;border-radius:2px;}
+    @media (max-width:600px){.language-switcher {position:static;margin-bottom:20px;justify-content:center;}}
   </style>
 </head>
 <body>
   <div class="container">
+    <!-- Dil Değiştirme Butonları -->
+    <div class="language-switcher">
+      <button class="lang-btn active" data-lang="tr">
+        🇹🇷 TR
+      </button>
+      <button class="lang-btn" data-lang="en">
+        🇬🇧 EN
+      </button>
+    </div>
+
     <header>
       <div class="logo">T</div>
       <div>
@@ -213,5 +231,291 @@
 
     </div>
   </div>
+
+  <script>
+    // Dil verileri
+    const translations = {
+      tr: {
+        title: "Gizlilik Politikası — Testor",
+        metaDesc: "Testor — Son Güncelleme: 10 Kasım 2025",
+        h1: "Gizlilik Politikası",
+        
+        nav: [
+          "1. Giriş", "2. Toplanan Bilgiler", "3. Bilgilerin Kullanımı",
+          "4. Veri Depolama ve Güvenlik", "5. Üçüncü Taraf Hizmetler",
+          "6. Veri Paylaşımı", "7. Çocukların Gizliliği", "8. Kullanıcı Hakları",
+          "9. Uluslararası Veri Aktarımı", "10. Çerezler", "11. Politika Değişiklikleri",
+          "12. İletişim"
+        ],
+        
+        sections: {
+          giris: {
+            title: "1. GİRİŞ",
+            content: "Testor (\"biz\", \"bizim\", \"uygulama\") olarak kullanıcılarımızın gizliliğini korumayı taahhüt ediyoruz. Bu Gizlilik Politikası, Testor mobil uygulamasını kullandığınızda kişisel bilgilerinizin nasıl toplandığını, kullanıldığını ve korunduğunu açıklamaktadır."
+          },
+          toplanan: {
+            title: "2. TOPLANAN BİLGİLER",
+            sub1: "2.1 Kişisel Bilgiler",
+            p1: "Uygulamamızı kullanırken aşağıdaki kişisel bilgileri toplayabiliriz:",
+            li1: ["<strong>Kimlik Bilgileri:</strong> Ad, soyad, e-posta adresi (Apple Sign In veya Google Sign In ile giriş yaptığınızda)", "<strong>Kullanıcı Hesap Bilgileri:</strong> Benzersiz kullanıcı kimliği (User ID)"],
+            sub2: "2.2 Eğitim İçeriği",
+            li2: ["Oluşturduğunuz okul, ders ve sınıf bilgileri", "Yüklediğiniz PDF dosyaları ve bu dosyalardan çıkarılan sorular", "Oluşturduğunuz şablonlar ve ayarlar"],
+            sub3: "2.3 Teknik Bilgiler",
+            li3: ["Cihaz bilgileri (model, işletim sistemi sürümü)", "Uygulama kullanım istatistikleri", "Hata günlükleri ve performans verileri"],
+            sub4: "2.4 Otomatik Olarak Toplanan Bilgiler",
+            li4: ["Uygulama içi gezinme verileri", "Özellik kullanım sıklığı", "Oturum süreleri"]
+          },
+          kullanim: {
+            title: "3. BİLGİLERİN KULLANIMI",
+            p1: "Topladığımız bilgileri şu amaçlarla kullanırız:",
+            li: ["Hesap oluşturma ve kimlik doğrulama", "Uygulama hizmetlerini sunma ve iyileştirme", "Kullanıcı verilerini güvenli şekilde saklama ve senkronize etme", "PDF işleme ve soru çıkarma özelliklerini sağlama", "Teknik destek sunma", "Uygulama performansını analiz etme ve hataları düzeltme", "Yasal yükümlülükleri yerine getirme"]
+          },
+          depolama: {
+            title: "4. VERİ DEPOLAMA VE GÜVENLİK",
+            sub1: "4.1 Depolama",
+            li1: ["Verileriniz Google Firebase altyapısında güvenli bir şekilde saklanır", "Veriler şifrelenmiş veri tabanlarında (Firestore) tutulur", "Her kullanıcının verileri izole edilmiş ve diğer kullanıcılardan ayrı tutulur"],
+            sub2: "4.2 Güvenlik Önlemleri",
+            li2: ["Endüstri standardı şifreleme protokolleri (SSL/TLS)", "Güvenli kimlik doğrulama sistemleri (Firebase Authentication)", "Düzenli güvenlik güncellemeleri", "Erişim kontrol mekanizmaları"],
+            sub3: "4.3 Veri Saklama Süresi",
+            li3: ["Hesabınız aktif olduğu sürece verileriniz saklanır", "Hesabınızı sildiğinizde, verileriniz 30 gün içinde kalıcı olarak silinir"]
+          },
+          ucuncu: {
+            title: "5. ÜÇÜNCÜ TARAF HİZMETLER",
+            p1: "Uygulamamız aşağıdaki üçüncü taraf hizmetleri kullanır:",
+            sub1: "5.1 Firebase (Google)",
+            li1: ["Kimlik doğrulama", "Veri depolama (Firestore)", "Gizlilik Politikası: <a href=\"https://firebase.google.com/support/privacy\" target=\"_blank\" rel=\"noopener\">firebase.google.com/support/privacy</a>"],
+            sub2: "5.2 Apple Sign In",
+            li2: ["Kullanıcı kimlik doğrulama", "Gizlilik Politikası: <a href=\"https://www.apple.com/legal/privacy/\" target=\"_blank\" rel=\"noopener\">apple.com/legal/privacy</a>"],
+            sub3: "5.3 Google Sign In",
+            li3: ["Kullanıcı kimlik doğrulama", "Gizlilik Politikası: <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener\">policies.google.com/privacy</a>"]
+          },
+          paylasim: {
+            title: "6. VERİ PAYLAŞIMI",
+            p1: "Kişisel bilgilerinizi aşağıdaki durumlar dışında üçüncü taraflarla paylaşmayız:",
+            li: ["Açık izniniz olduğunda", "Yasal zorunluluklar gereği (mahkeme kararı, yasal süreç)", "Hizmet sağlayıcılarımızla (Firebase gibi, sadece hizmet sunumu için gerekli olduğunda)", "Güvenlik, dolandırıcılık veya teknik sorunları tespit etmek ve önlemek için"],
+            p2: "<strong>ÖNEMLİ:</strong> Verilerinizi asla pazarlama amacıyla satmıyoruz veya paylaşmıyoruz."
+          },
+          cocuk: {
+            title: "7. ÇOCUKLARIN GİZLİLİĞİ",
+            p1: "Uygulamamız 4 yaşın altındaki çocuklara yönelik değildir. Bilerek 4 yaş altı çocuklardan kişisel bilgi toplamayız. Eğer 13 yaşından küçük bir çocuğun kişisel bilgilerini topladığımızı fark edersek, bu bilgileri derhal sileriz."
+          },
+          haklar: {
+            title: "8. KULLANICI HAKLARI",
+            p1: "Aşağıdaki haklara sahipsiniz:",
+            li: ["<strong>8.1 Erişim Hakkı</strong> — Hakkınızda sakladığımız kişisel verilere erişim talep edebilirsiniz", "<strong>8.2 Düzeltme Hakkı</strong> — Yanlış veya eksik kişisel verilerinizi düzeltme talebinde bulunabilirsiniz", "<strong>8.3 Silme Hakkı (Unutulma Hakkı)</strong> — Kişisel verilerinizin silinmesini talep edebilirsiniz. Uygulama içinden hesabınızı silebilirsiniz", "<strong>8.4 Veri Taşınabilirliği</strong> — Verilerinizin yapılandırılmış, yaygın olarak kullanılan bir formatta size iletilmesini talep edebilirsiniz", "<strong>8.5 İtiraz Hakkı</strong> — Verilerinizin işlenmesine itiraz edebilirsiniz"]
+          },
+          aktarim: {
+            title: "9. ULUSLARARASI VERİ AKTARIMI",
+            p1: "Verileriniz, bulunduğunuz ülke dışındaki sunucularda saklanabilir. Firebase'in küresel altyapısı kullanılarak verileriniz güvenli bir şekilde işlenir ve uluslararası veri koruma standartlarına uygun şekilde aktarılır."
+          },
+          cerez: {
+            title: "10. ÇEREZLER VE TAKİP TEKNOLOJİLERİ",
+            p1: "Uygulamamız şu anda çerez veya takip teknolojisi kullanmamaktadır. Gelecekte kullanılması durumunda, bu politika güncellenecek ve bilgilendirileceksiniz."
+          },
+          degisiklik: {
+            title: "11. GİZLİLİK POLİTİKASI DEĞİŞİKLİKLERİ",
+            p1: "Bu Gizlilik Politikasını zaman zaman güncelleyebiliriz. Önemli değişiklikler olduğunda:",
+            li: ["Uygulama içinde bildirim gösterilir", "E-posta ile bilgilendirme yapılır (gerektiğinde)", "Son güncelleme tarihi değiştirilir"],
+            p2: "Güncellemeleri düzenli olarak kontrol etmenizi öneririz."
+          },
+          footer: "© Testor — Tüm hakları saklıdır."
+        }
+      },
+      
+      en: {
+        title: "Privacy Policy — Testor",
+        metaDesc: "Testor — Last Updated: November 10, 2025",
+        h1: "Privacy Policy",
+        
+        nav: [
+          "1. Introduction", "2. Information Collected", "3. Use of Information",
+          "4. Data Storage and Security", "5. Third-Party Services",
+          "6. Data Sharing", "7. Children's Privacy", "8. User Rights",
+          "9. International Data Transfer", "10. Cookies", "11. Policy Changes",
+          "12. Contact"
+        ],
+        
+        sections: {
+          giris: {
+            title: "1. INTRODUCTION",
+            content: "Testor (\"we\", \"our\", \"app\") is committed to protecting our users' privacy. This Privacy Policy explains how your personal information is collected, used, and protected when you use the Testor mobile application."
+          },
+          toplanan: {
+            title: "2. INFORMATION COLLECTED",
+            sub1: "2.1 Personal Information",
+            p1: "When using our application, we may collect the following personal information:",
+            li1: ["<strong>Identity Information:</strong> Name, surname, email address (when logging in with Apple Sign In or Google Sign In)", "<strong>User Account Information:</strong> Unique user identifier (User ID)"],
+            sub2: "2.2 Educational Content",
+            li2: ["School, course, and class information you create", "PDF files you upload and questions extracted from these files", "Templates and settings you create"],
+            sub3: "2.3 Technical Information",
+            li3: ["Device information (model, operating system version)", "Application usage statistics", "Error logs and performance data"],
+            sub4: "2.4 Automatically Collected Information",
+            li4: ["In-app navigation data", "Feature usage frequency", "Session durations"]
+          },
+          kullanim: {
+            title: "3. USE OF INFORMATION",
+            p1: "We use the information we collect for the following purposes:",
+            li: ["Account creation and authentication", "Providing and improving application services", "Securely storing and synchronizing user data", "Providing PDF processing and question extraction features", "Providing technical support", "Analyzing application performance and fixing errors", "Fulfilling legal obligations"]
+          },
+          depolama: {
+            title: "4. DATA STORAGE AND SECURITY",
+            sub1: "4.1 Storage",
+            li1: ["Your data is securely stored in Google Firebase infrastructure", "Data is kept in encrypted databases (Firestore)", "Each user's data is isolated and kept separate from other users"],
+            sub2: "4.2 Security Measures",
+            li2: ["Industry-standard encryption protocols (SSL/TLS)", "Secure authentication systems (Firebase Authentication)", "Regular security updates", "Access control mechanisms"],
+            sub3: "4.3 Data Retention Period",
+            li3: ["Your data is retained as long as your account is active", "When you delete your account, your data is permanently deleted within 30 days"]
+          },
+          ucuncu: {
+            title: "5. THIRD-PARTY SERVICES",
+            p1: "Our application uses the following third-party services:",
+            sub1: "5.1 Firebase (Google)",
+            li1: ["Authentication", "Data storage (Firestore)", "Privacy Policy: <a href=\"https://firebase.google.com/support/privacy\" target=\"_blank\" rel=\"noopener\">firebase.google.com/support/privacy</a>"],
+            sub2: "5.2 Apple Sign In",
+            li2: ["User authentication", "Privacy Policy: <a href=\"https://www.apple.com/legal/privacy/\" target=\"_blank\" rel=\"noopener\">apple.com/legal/privacy</a>"],
+            sub3: "5.3 Google Sign In",
+            li3: ["User authentication", "Privacy Policy: <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener\">policies.google.com/privacy</a>"]
+          },
+          paylasim: {
+            title: "6. DATA SHARING",
+            p1: "We do not share your personal information with third parties except in the following circumstances:",
+            li: ["When you give explicit permission", "When required by legal obligations (court order, legal process)", "With our service providers (like Firebase, only when necessary for service delivery)", "To detect and prevent security, fraud, or technical issues"],
+            p2: "<strong>IMPORTANT:</strong> We never sell or share your data for marketing purposes."
+          },
+          cocuk: {
+            title: "7. CHILDREN'S PRIVACY",
+            p1: "Our application is not directed at children under the age of 4. We do not knowingly collect personal information from children under 4. If we discover that we have collected personal information from a child under 13, we will delete this information immediately."
+          },
+          haklar: {
+            title: "8. USER RIGHTS",
+            p1: "You have the following rights:",
+            li: ["<strong>8.1 Right of Access</strong> — You can request access to the personal data we store about you", "<strong>8.2 Right to Rectification</strong> — You can request correction of incorrect or incomplete personal data", "<strong>8.3 Right to Deletion (Right to be Forgotten)</strong> — You can request deletion of your personal data. You can delete your account from within the application", "<strong>8.4 Data Portability</strong> — You can request that your data be transmitted to you in a structured, commonly used format", "<strong>8.5 Right to Object</strong> — You can object to the processing of your data"]
+          },
+          aktarim: {
+            title: "9. INTERNATIONAL DATA TRANSFER",
+            p1: "Your data may be stored on servers located outside your country. Using Firebase's global infrastructure, your data is processed securely and transferred in compliance with international data protection standards."
+          },
+          cerez: {
+            title: "10. COOKIES AND TRACKING TECHNOLOGIES",
+            p1: "Our application currently does not use cookies or tracking technologies. If used in the future, this policy will be updated and you will be informed."
+          },
+          degisiklik: {
+            title: "11. PRIVACY POLICY CHANGES",
+            p1: "We may update this Privacy Policy from time to time. When significant changes occur:",
+            li: ["Notifications are displayed within the application", "Email notifications are sent (when necessary)", "The last update date is changed"],
+            p2: "We recommend checking for updates regularly."
+          },
+          footer: "© Testor — All rights reserved."
+        }
+      }
+    };
+
+    // Dil değiştirme fonksiyonu
+    function changeLanguage(lang) {
+      const t = translations[lang];
+      
+      // Sayfa başlık ve meta güncelleme
+      document.title = t.title;
+      document.querySelector('meta[name="description"]').setAttribute('content', t.title);
+      document.querySelector('h1').textContent = t.h1;
+      document.querySelector('.meta').textContent = t.metaDesc;
+      
+      // Navigasyon bağlantılarını güncelle
+      const navLinks = document.querySelectorAll('.toc a');
+      navLinks.forEach((link, index) => {
+        link.textContent = t.nav[index];
+      });
+      
+      // Bölümleri güncelle
+      Object.keys(t.sections).forEach(sectionId => {
+        const section = t.sections[sectionId];
+        const sectionEl = document.getElementById(sectionId);
+        
+        if (sectionEl) {
+          // Başlık
+          const h2 = sectionEl.querySelector('h2');
+          if (h2) h2.textContent = section.title;
+          
+          // İçerik güncelleme
+          const contentElements = sectionEl.querySelectorAll('p, ul li, h3');
+          let contentIndex = 0;
+          
+          // Paragrafları güncelle
+          const paragraphs = sectionEl.querySelectorAll('p');
+          paragraphs.forEach((p, pIndex) => {
+            if (section[`p${pIndex + 1}`]) {
+              p.innerHTML = section[`p${pIndex + 1}`];
+            }
+          });
+          
+          // Alt başlıkları güncelle
+          const subHeaders = sectionEl.querySelectorAll('h3');
+          subHeaders.forEach((h3, h3Index) => {
+            if (section[`sub${h3Index + 1}`]) {
+              h3.textContent = section[`sub${h3Index + 1}`];
+            }
+          });
+          
+          // Liste öğelerini güncelle
+          const lists = sectionEl.querySelectorAll('ul');
+          lists.forEach((ul, ulIndex) => {
+            const listItems = ul.querySelectorAll('li');
+            const listKey = `li${ulIndex + 1}`;
+            
+            if (section[listKey]) {
+              listItems.forEach((li, liIndex) => {
+                if (section[listKey][liIndex]) {
+                  li.innerHTML = section[listKey][liIndex];
+                }
+              });
+            }
+          });
+        }
+      });
+      
+      // Footer güncelle
+      document.querySelector('footer p').textContent = t.sections.footer;
+      
+      // Aktif buton güncelle
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.lang === lang) {
+          btn.classList.add('active');
+        }
+      });
+      
+      // Dil değişikliğini local storage'a kaydet
+      localStorage.setItem('testor_language', lang);
+      
+      // HTML lang attribute güncelle
+      document.documentElement.lang = lang === 'tr' ? 'tr' : 'en';
+    }
+
+    // Sayfa yüklendiğinde çalışacak
+    document.addEventListener('DOMContentLoaded', function() {
+      const langButtons = document.querySelectorAll('.lang-btn');
+      
+      // Kayıtlı dili kontrol et
+      const savedLang = localStorage.getItem('testor_language') || 'tr';
+      
+      // İlk dil ayarı
+      changeLanguage(savedLang);
+      
+      // Butonlara tıklama olayı ekle
+      langButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+          const lang = this.dataset.lang;
+          changeLanguage(lang);
+        });
+      });
+      
+      // URL'de dil parametresi varsa
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlLang = urlParams.get('lang');
+      if (urlLang && (urlLang === 'tr' || urlLang === 'en')) {
+        changeLanguage(urlLang);
+      }
+    });
+  </script>
 </body>
 </html>
