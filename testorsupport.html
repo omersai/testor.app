@@ -35,6 +35,7 @@ body {
 .container {
     max-width: 900px;
     margin: 0 auto;
+    position: relative;
 }
 
 .header {
@@ -193,6 +194,47 @@ ul li {
     margin-bottom: 8px;
 }
 
+/* Yeni eklenen dil butonları stili */
+.language-switcher {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    display: flex;
+    gap: 8px;
+    z-index: 100;
+}
+
+.lang-btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.lang-btn:hover {
+    background: #f3f4f6;
+    transform: translateY(-1px);
+}
+
+.lang-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.flag {
+    width: 20px;
+    height: 15px;
+    border-radius: 2px;
+}
+
 @media (max-width: 768px) {
     h1 {
         font-size: 24px;
@@ -200,6 +242,7 @@ ul li {
 
     .header {
         padding: 30px 15px;
+        margin-top: 60px;
     }
 
     .section {
@@ -209,13 +252,38 @@ ul li {
     .features-grid {
         grid-template-columns: 1fr;
     }
+    
+    .language-switcher {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        padding: 5px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .lang-btn {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
 }
-
-
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Dil Değiştirme Butonları -->
+        <div class="language-switcher">
+            <button class="lang-btn active" data-lang="tr">
+                🇹🇷 TR
+            </button>
+            <button class="lang-btn" data-lang="en">
+                🇬🇧 EN
+            </button>
+        </div>
+
         <!-- Header -->
         <div class="header">
             <div class="logo">📄✨</div>
@@ -390,7 +458,7 @@ ul li {
             <div class="contact">
                 <p>
                     <strong>Email:</strong>
-                    <a href="mailto:testorappinfo@gmail.com	">testorappinfo@gmail.com</a>
+                    <a href="mailto:testorappinfo@gmail.com">testorappinfo@gmail.com</a>
                 </p>
                 <p style="margin-top: 30px; color: var(--text-secondary); font-size: 14px;">
                     Testor - Eğitimi kolaylaştırıyoruz 🎓
@@ -398,5 +466,258 @@ ul li {
             </div>
         </div>
     </div>
+
+    <script>
+    // Dil verileri
+    const translations = {
+        tr: {
+            title: "Testor - Destek & Yardım",
+            headerTitle: "Testor",
+            headerSubtitle: "PDF'lerden Hızlıca Sınav ve Test Hazırlayın",
+            
+            aboutTitle: "🎯 Testor Nedir?",
+            aboutP1: "Testor, öğretmenlerin ve eğitimcilerin PDF dosyalarından kolayca soru çıkarmasını ve profesyonel sınavlar hazırlamasını sağlayan yapay zeka destekli bir mobil uygulamadır.",
+            aboutP2: "Artık saatlerce soruları tek tek kopyalamaya ve düzenlemeye gerek yok! Testor ile PDF'inizdeki soruları saniyeler içinde seçin, özelleştirin ve yeni bir sınav PDF'i oluşturun.",
+            
+            howToTitle: "📱 Nasıl Kullanılır?",
+            steps: [
+                "<strong>PDF Yükleyin</strong><br>Sorular içeren PDF dosyanızı uygulamaya yükleyin. Tek seferde en fazla 3 PDF yükleyebilirsiniz.",
+                "<strong>Soruları Seçin</strong><br>Yapay zeka otomatik olarak soruları algılar. İstediğiniz soruları seçin, istemediğiniz soruları kaldırın.",
+                "<strong>Sınav Bilgilerini Girin</strong><br>Okul adı, sınıf, ders, tarih gibi bilgileri girin ve hazır şablonlardan birini seçin.",
+                "<strong>PDF Oluşturun</strong><br>Tek tuşla profesyonel görünümlü sınav PDF'inizi oluşturun ve paylaşın!"
+            ],
+            
+            featuresTitle: "⚡ Özellikler",
+            features: [
+                {title: "🤖 Yapay Zeka Destekli", desc: "Gelişmiş OCR teknolojisi ile soruları otomatik olarak algılar ve çıkarır."},
+                {title: "🎨 Özelleştirilebilir Şablonlar", desc: "Hazır şablonlar arasından seçim yapın veya kendi şablonunuzu oluşturun."},
+                {title: "📚 Çoklu PDF Desteği", desc: "Birden fazla PDF'den soruları birleştirerek tek sınav hazırlayın."},
+                {title: "💾 Sınav Geçmişi", desc: "Oluşturduğunuz tüm sınavları kaydeder, istediğiniz zaman tekrar kullanın."},
+                {title: "🎯 Okul & Sınıf Yönetimi", desc: "Okul, sınıf ve ders bilgilerinizi kaydedin, hızlıca seçim yapın."},
+                {title: "📱 Kolay Paylaşım", desc: "Hazırladığınız sınavları WhatsApp, Email veya diğer uygulamalar ile paylaşın."}
+            ],
+            
+            membershipTitle: "💎 Üyelik Paketleri",
+            starterTitle: "🆓 Starter (Ücretsiz)",
+            starterItems: ["3 adet PDF oluşturma hakkı", "Temel şablonlar", "Reklamlı kullanım"],
+            eliteTitle: "👑 Elite",
+            eliteItems: ["Sınırsız PDF oluşturma", "Tüm premium şablonlar", "Özel şablon oluşturma", "Reklamsız deneyim"],
+            
+            faqTitle: "❓ Sıkça Sorulan Sorular",
+            faqs: [
+                {
+                    q: "Hangi dosya formatları destekleniyor?",
+                    a: "Şu anda sadece PDF dosyaları desteklenmektedir. PDF'lerinizin net ve okunabilir olması en iyi sonuçlar için önemlidir."
+                },
+                {
+                    q: "Yapay zeka her zaman doğru sonuç verir mi?",
+                    a: "Yapay zeka teknolojisi oldukça gelişmiş olsa da %100 doğruluk garanti edilemez. Bu yüzden soruları seçme ekranında her soruyu kontrol etme ve ayarlama imkanı sunuyoruz."
+                },
+                {
+                    q: "Kaç sayfa PDF yükleyebilirim?",
+                    a: "Tek bir PDF'de sayfa sınırı yoktur ancak çok sayfalı PDF'lerin işlenmesi daha uzun sürebilir. En iyi deneyim için PDF'lerinizi bölümlere ayırmanızı öneririz."
+                },
+                {
+                    q: "Starter paketinde kalan haklarım nasıl yenilenir?",
+                    a: "Starter paketinde verilen 3 hak tek kullanımlıktır ve yenilenmez. Sınırsız kullanım için Elite pakete geçmeniz gerekmektedir."
+                },
+                {
+                    q: "Elite üyeliğimi nasıl iptal edebilirim?",
+                    a: "Elite üyeliğinizi App Store hesap ayarlarınızdan istediğiniz zaman iptal edebilirsiniz. İptal etseniz bile mevcut abonelik döneminiz sonuna kadar Elite özelliklerinden yararlanmaya devam edersiniz."
+                },
+                {
+                    q: "Verilerim güvende mi?",
+                    a: "Evet! Tüm verileriniz şifrelenmiş Firebase sunucularında güvenle saklanır. Yüklediğiniz PDF'ler sadece soru çıkarma işlemi için kullanılır ve sunucularda saklanmaz."
+                },
+                {
+                    q: "Android versiyonu var mı?",
+                    a: "Evet! Testor hem iOS hem de Android platformlarında kullanılabilir."
+                }
+            ],
+            
+            contactTitle: "📧 İletişim",
+            contactText: "Sorularınız, önerileriniz veya teknik destek için bizimle iletişime geçebilirsiniz:",
+            contactEmail: "testorappinfo@gmail.com",
+            footerText: "Testor - Eğitimi kolaylaştırıyoruz 🎓"
+        },
+        
+        en: {
+            title: "Testor - Support & Help",
+            headerTitle: "Testor",
+            headerSubtitle: "Quickly Create Exams and Tests from PDFs",
+            
+            aboutTitle: "🎯 What is Testor?",
+            aboutP1: "Testor is an AI-powered mobile application that enables teachers and educators to easily extract questions from PDF files and create professional exams.",
+            aboutP2: "No more copying and editing questions one by one for hours! With Testor, select, customize, and create a new exam PDF from your PDF in seconds.",
+            
+            howToTitle: "📱 How to Use?",
+            steps: [
+                "<strong>Upload PDF</strong><br>Upload your PDF file containing questions to the app. You can upload up to 3 PDFs at once.",
+                "<strong>Select Questions</strong><br>AI automatically detects questions. Select the questions you want, remove the ones you don't.",
+                "<strong>Enter Exam Information</strong><br>Enter information such as school name, class, course, date, and select one of the ready-made templates.",
+                "<strong>Create PDF</strong><br>With one click, create and share your professional-looking exam PDF!"
+            ],
+            
+            featuresTitle: "⚡ Features",
+            features: [
+                {title: "🤖 AI-Powered", desc: "Automatically detects and extracts questions using advanced OCR technology."},
+                {title: "🎨 Customizable Templates", desc: "Choose from ready-made templates or create your own template."},
+                {title: "📚 Multiple PDF Support", desc: "Combine questions from multiple PDFs to create a single exam."},
+                {title: "💾 Exam History", desc: "Saves all exams you create, reuse them anytime."},
+                {title: "🎯 School & Class Management", desc: "Save your school, class, and course information, make quick selections."},
+                {title: "📱 Easy Sharing", desc: "Share your prepared exams via WhatsApp, Email, or other applications."}
+            ],
+            
+            membershipTitle: "💎 Membership Plans",
+            starterTitle: "🆓 Starter (Free)",
+            starterItems: ["3 PDF creation rights", "Basic templates", "Ad-supported usage"],
+            eliteTitle: "👑 Elite",
+            eliteItems: ["Unlimited PDF creation", "All premium templates", "Custom template creation", "Ad-free experience"],
+            
+            faqTitle: "❓ Frequently Asked Questions",
+            faqs: [
+                {
+                    q: "Which file formats are supported?",
+                    a: "Currently, only PDF files are supported. It's important that your PDFs are clear and readable for the best results."
+                },
+                {
+                    q: "Does AI always give accurate results?",
+                    a: "While AI technology is quite advanced, 100% accuracy cannot be guaranteed. That's why we provide the option to check and adjust every question on the question selection screen."
+                },
+                {
+                    q: "How many pages can I upload in a PDF?",
+                    a: "There is no page limit for a single PDF, but processing very large PDFs may take longer. We recommend dividing your PDFs into sections for the best experience."
+                },
+                {
+                    q: "How are my remaining credits in the Starter plan renewed?",
+                    a: "The 3 credits given in the Starter plan are for one-time use and do not renew. You need to switch to the Elite plan for unlimited usage."
+                },
+                {
+                    q: "How can I cancel my Elite membership?",
+                    a: "You can cancel your Elite membership at any time from your App Store account settings. Even if you cancel, you will continue to enjoy Elite features until the end of your current subscription period."
+                },
+                {
+                    q: "Is my data safe?",
+                    a: "Yes! All your data is securely stored on encrypted Firebase servers. The PDFs you upload are used only for question extraction and are not stored on servers."
+                },
+                {
+                    q: "Is there an Android version?",
+                    a: "Yes! Testor is available on both iOS and Android platforms."
+                }
+            ],
+            
+            contactTitle: "📧 Contact",
+            contactText: "You can contact us for your questions, suggestions, or technical support:",
+            contactEmail: "testorappinfo@gmail.com",
+            footerText: "Testor - Making education easier 🎓"
+        }
+    };
+
+    // Dil değiştirme fonksiyonu
+    function changeLanguage(lang) {
+        const t = translations[lang];
+        
+        // Sayfa başlık ve meta güncelleme
+        document.title = t.title;
+        document.querySelector('h1').textContent = t.headerTitle;
+        document.querySelector('.subtitle').textContent = t.headerSubtitle;
+        
+        // Hakkında bölümü
+        const aboutSection = document.querySelectorAll('.section')[0];
+        aboutSection.querySelector('h2').textContent = t.aboutTitle;
+        const aboutParagraphs = aboutSection.querySelectorAll('p');
+        aboutParagraphs[0].textContent = t.aboutP1;
+        aboutParagraphs[1].textContent = t.aboutP2;
+        
+        // Nasıl Kullanılır bölümü
+        const howToSection = document.querySelectorAll('.section')[1];
+        howToSection.querySelector('h2').textContent = t.howToTitle;
+        const steps = howToSection.querySelectorAll('.steps li');
+        steps.forEach((li, index) => {
+            li.innerHTML = t.steps[index];
+        });
+        
+        // Özellikler bölümü
+        const featuresSection = document.querySelectorAll('.section')[2];
+        featuresSection.querySelector('h2').textContent = t.featuresTitle;
+        const featureCards = featuresSection.querySelectorAll('.feature-card');
+        featureCards.forEach((card, index) => {
+            card.querySelector('h4').textContent = t.features[index].title;
+            card.querySelector('p').textContent = t.features[index].desc;
+        });
+        
+        // Üyelik bölümü
+        const membershipSection = document.querySelectorAll('.section')[3];
+        membershipSection.querySelector('h2').textContent = t.membershipTitle;
+        const h3Elements = membershipSection.querySelectorAll('h3');
+        h3Elements[0].textContent = t.starterTitle;
+        h3Elements[1].textContent = t.eliteTitle;
+        
+        const lists = membershipSection.querySelectorAll('ul');
+        t.starterItems.forEach((item, index) => {
+            lists[0].children[index].textContent = item;
+        });
+        t.eliteItems.forEach((item, index) => {
+            lists[1].children[index].textContent = item;
+        });
+        
+        // SSS bölümü
+        const faqSection = document.querySelectorAll('.section')[4];
+        faqSection.querySelector('h2').textContent = t.faqTitle;
+        const faqItems = faqSection.querySelectorAll('.faq-item');
+        faqItems.forEach((item, index) => {
+            item.querySelector('.faq-question').textContent = t.faqs[index].q;
+            item.querySelector('.faq-answer').textContent = t.faqs[index].a;
+        });
+        
+        // İletişim bölümü
+        const contactSection = document.querySelectorAll('.section')[5];
+        contactSection.querySelector('h2').textContent = t.contactTitle;
+        contactSection.querySelector('p').textContent = t.contactText;
+        contactSection.querySelector('a').textContent = t.contactEmail;
+        contactSection.querySelector('a').href = `mailto:${t.contactEmail}`;
+        contactSection.querySelectorAll('p')[2].textContent = t.footerText;
+        
+        // Aktif buton güncelle
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.dataset.lang === lang) {
+                btn.classList.add('active');
+            }
+        });
+        
+        // Dil değişikliğini local storage'a kaydet
+        localStorage.setItem('testor_language', lang);
+        
+        // HTML lang attribute güncelle
+        document.documentElement.lang = lang === 'tr' ? 'tr' : 'en';
+    }
+
+    // Sayfa yüklendiğinde çalışacak
+    document.addEventListener('DOMContentLoaded', function() {
+        const langButtons = document.querySelectorAll('.lang-btn');
+        
+        // Kayıtlı dili kontrol et
+        const savedLang = localStorage.getItem('testor_language') || 'tr';
+        
+        // İlk dil ayarı
+        changeLanguage(savedLang);
+        
+        // Butonlara tıklama olayı ekle
+        langButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const lang = this.dataset.lang;
+                changeLanguage(lang);
+            });
+        });
+        
+        // URL'de dil parametresi varsa
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlLang = urlParams.get('lang');
+        if (urlLang && (urlLang === 'tr' || urlLang === 'en')) {
+            changeLanguage(urlLang);
+        }
+    });
+    </script>
 </body>
 </html>
